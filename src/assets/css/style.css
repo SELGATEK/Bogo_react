@@ -4900,6 +4900,7 @@ color: #969696;
   background-size: cover;
   background-position: inherit;
   width: auto;
+  max-width: 450px;
   height: 240px;
 
   display: flex;
@@ -4937,11 +4938,9 @@ color: #969696;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 100%;
-  /* or 28px */
-
-
+  overflow-wrap:anywhere;
   color: #000000;
 }
 .voucher_preview_row .buy-box h3, .voucher_preview_row .get-box h3{
@@ -4951,6 +4950,7 @@ color: #969696;
   font-size: 18px;
   line-height: 100%;
   color: #029CAB;
+  overflow-wrap:anywhere;
 }
 /* ============================ Campaign Css Ends ============================= */
 
@@ -6362,7 +6362,13 @@ ul#tabs2-nav li.active {
   padding: 10px 0px;
 }
 
-
+.offerBoxRow{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+}
 
 .offerlabelbox, .public_nowCampaign_box{
   background: #1478A8;
@@ -6603,7 +6609,7 @@ ul#tabs2-nav li.active {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-top: 8px;
+  /* margin-top: 8px; */
 }
 .MangeOfferEditRow button{
   background: #1478A8;
@@ -6626,7 +6632,7 @@ ul#tabs2-nav li.active {
 }
 .MangeOfferEditRow ul{
   border: none;
-  background: #0000002b;
+  background: #c5c5c5;
   padding: 10px 0px;
 }
 

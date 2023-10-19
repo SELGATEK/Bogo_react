@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import InputBoxComponent from '../../../../components/CommonComponent/InputBoxComponent.js';
-import ComparerOffer from '../elements/tabcomponents/CompareOffer.js';
-import DaysInput from '../elements/tabcomponents/DaysInput.js';
+import ComparerOffer from './tabcomponents/CompareOffer.js';
+import DaysInput from './tabcomponents/DaysInput.js';
 import ExcludeWeekends from './tabcomponents/ExcludeWeekends';
-import Weekends from '../elements/tabcomponents/Weekends.js';
+import Weekends from './tabcomponents/Weekends.js';
 import ExcludePublicHolidays from './tabcomponents/ExcludePublicHolidays';
 import TextAreaLabel from '../../../../components/CommonComponent/TextAreaLabel';
 

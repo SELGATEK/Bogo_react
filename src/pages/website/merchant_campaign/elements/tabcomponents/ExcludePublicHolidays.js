@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
-export default function ExcludePublicHolidays() {
-
+ 
+  const ExcludePublicHoliday = ({ excludePublicHolidays, setExcludePublicHolidays}) => { 
     // Holiday Info Modal
     const [showModal, setShowModal] = useState(false);
 
@@ -17,29 +17,19 @@ export default function ExcludePublicHolidays() {
 
 
 
-
-// switch button
-  const [excludeHolidays, setExcludeHolidays] = useState(false);
-
-  const handleSwitchChange = () => {
-    setExcludeHolidays((prevValue) => !prevValue);
-  };
-
   return (
-
-
     <>
 
     <div className="row">
       <div className="offday_row">
-        <label htmlFor="">Exclude public holidays 
+        <label htmlFor="">Exclude public holidays
             <img src="/images/holidayIcon.png" alt="" className='ml-1 holidayInfo' onClick={handleOpenModal} />
         </label>
         <label className="switch">
           <input
             type="checkbox"
-            checked={excludeHolidays}
-            onChange={handleSwitchChange}
+            checked={excludePublicHolidays}
+            onChange={()=>setExcludePublicHolidays(!excludePublicHolidays)}
           />
           <span className="slider round"></span>
         </label>
@@ -129,3 +119,6 @@ export default function ExcludePublicHolidays() {
 
   );
 }
+
+
+export default ExcludePublicHoliday

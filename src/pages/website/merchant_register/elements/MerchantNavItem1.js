@@ -6,12 +6,14 @@ import { fetchCategories } from './../../../../redux/slice/categorySlice'; // Re
 
 
 import MerchantNavItem from './MerchantNavItem';
+import { fetchAllCountries } from '../../../../redux/slices/countrySlice';
 
 const MerchantNavTabs = () => {
   const [activeCategory, setActiveCategory] = useState(null);
 
   // Get the categories from the Redux store
   const categories = useSelector((state) => state.category.categories);
+  const countries = useSelector((state) => state.country.countries);
  
 
 
@@ -19,15 +21,15 @@ const MerchantNavTabs = () => {
   const dispatch = useDispatch();
 
   
-  // Fetch the categories from the API
-  useEffect(() => {
-
-  // Dispatch the fetchCategories action
-  if (!categories.length) {
+  // // Fetch the categories from the API
+  // useEffect(() => {
+ 
+  // if (!categories.length) {
       
-      dispatch(fetchCategories());
-    }
-  }, [dispatch, categories]);
+  //     dispatch(fetchCategories());
+  //     dispatch(fetchAllCountries());
+  //   }
+  // }, [dispatch, categories, countries]);
 
   const handleCategoryClick = async(categoryId) => {
     setActiveCategory(categoryId);

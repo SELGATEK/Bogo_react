@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function DayImput({ day, label, selected, onChange }) {
+export default function DayImput({ day, selected, onChange }) {
   return (
     <label className="checkbox-label">
-      <span>{label}</span>
+      <span>{day}</span>
       <div className="input_bg">
         <input
           type="checkbox"

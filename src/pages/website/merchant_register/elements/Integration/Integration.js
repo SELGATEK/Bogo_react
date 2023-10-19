@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 
 // Import Components
 import InstagramGalleryItem from './InstagramGalleryItem'
+import { useDispatch } from 'react-redux';
+import { MERCHANT_BUSINESS_SUB } from '../../../../../redux/slices/merchantAuthSlice';
 
 
 
@@ -19,9 +21,15 @@ export default function Integration() {
   };
 
 
+  const dispatch = useDispatch()
+  const history = useNavigate()
 
-
-
+  const nextStapReg=()=>{ 
+    
+   // dispatch(MERCHANT_BUSINESS_SUB())
+    history('/merchant_registration')
+  }
+  
 
   return (
     <>
@@ -66,12 +74,11 @@ export default function Integration() {
         {/* <!-- submit details button --> */}
         <div className="row ">
             <div className="col-12 tab-content">
-              <div className="next-btn-box tab-pane active" id="tabs-2">
-                  <Link to="/merchant_registration " >
-                    <button   type="submit" className="btn btn-primary btnNext integration-btn-next" >
+              <div className="next-btn-box tab-pane active" id="tabs-2"> 
+                    <button   type="submit" className="btn btn-primary btnNext integration-btn-next" onClick={nextStapReg}>
                     Next
                     </button> 
-                  </Link>
+                 
                   
               </div>
             </div>

@@ -1,51 +1,47 @@
-import React, {useState} from 'react'
-import { Link } from 'react-router-dom';
-import {loginUser} from './../../../../redux/slice/authSlice';
-import {useDispatch} from 'react-redux';
-
+import React, {useEffect, useState} from 'react'
+import {  Link, useNavigate } from 'react-router-dom';
 
 // Import components
 import RegisterGroupBox from './RegisterGroupBox'
+import { useDispatch, useSelector } from 'react-redux';
+import {   MERCHANT_SIGNIN  } from '../../../../redux/slices/merchantAuthSlice';
 
 
 export default function LoginForm() {
 
 
-
-    const dispatch = useDispatch();
-
-
-
-
-
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
 
+    const dispatch = useDispatch();
+    const history = useNavigate();
+  
 
+    const merchantData = useSelector((state) => state.merchantAuth);
 
-    // form data
-    const [formData, setFormData] = useState({
-        email:'',
-        password:'',
-     });
+    useEffect(() => {
+        if (merchantData?.loginError) { setErrorMsg(merchantData?.loginError) }
+        if (merchantData?.merchantData?.user) { history('/dashboard') }
+      }, [merchantData, history]);
 
-
-    const handleChange = (event) => {
-        setFormData({...formData, [event.target.name]: event.target.value});
-    }
-
-
+      
     
-
-    // Submit form
-    const handlesubmit = async(e) => {
-        e.preventDefault();
-        dispatch(loginUser(formData));
+    const login=()=>{  
+        if(!email || !password) setError(true)
+        else{ 
+             const obj ={ email, password } 
+             dispatch(MERCHANT_SIGNIN(obj))
+      }
     }
-
+ 
+ 
 
 
   return (
@@ -53,15 +49,16 @@ export default function LoginForm() {
         <div className="col-md-6">
             <div className="login-group-box">
                 <h4>Login</h4>
-                <form action="user_login" className="user_login_form" onSubmit={handlesubmit}>
+                <p style={{color:'red'}}>{errorMsg}</p>
+                <div className="user_login_form">
                 <div className="row">
                     <div className="col-6">
                     <input
                         type="text"
                         className="form-control user_login_email"
                         placeholder="Email address"
-                        value={formData.email}
-                        onChange={handleChange}
+                        onChange={e => setEmail(e.target.value)}
+                        value={email}
                     />
                     </div>
                     <div className="col-6">
@@ -70,6 +67,8 @@ export default function LoginForm() {
                         className="form-control user_login_pass"
                         id="exampleFormControlInput1"
                         placeholder="Password"
+                        onChange={e => setPassword(e.target.value)}
+                        value={password}
                     />
                     <i
                         toggle="#password-field"
@@ -84,12 +83,10 @@ export default function LoginForm() {
                     </Link>
                     </div>
                     <div className="user_login_btn-box">
-                    <button className="user_login_btn btn">
-                    Login
-                    </button>
+                    <button className="user_login_btn btn" onClick={login}>Login</button>
                     </div>
                 </div>
-                </form>
+                </div>
             </div>
             <RegisterGroupBox />
         </div>

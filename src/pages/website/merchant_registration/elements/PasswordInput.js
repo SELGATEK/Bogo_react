@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function PasswordInput({ id, name, placeholder, required }) {
+function PasswordInput({ id, name, placeholder, required, getValue }) {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -15,7 +15,7 @@ function PasswordInput({ id, name, placeholder, required }) {
         id={id}
         name={name}
         placeholder={placeholder}
-        required={required}
+        required={required} onChange={e=>getValue(e.target.value)}
       />
       <i
         onClick={togglePasswordVisibility}

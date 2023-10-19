@@ -1,51 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
-import { fetchCategories } from './../../../../redux/slice/categorySlice'; // Replace with the correct import path
-import {fetchSubcategory } from './../../../../redux/slice/subCategorySlice'
-
-
-
+import React, { useState} from 'react';
 import MerchantNavItem from './MerchantNavItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchCategories }from '../../../../redux/slices/categorySlice'  
+import { fetchSubcategory } from '../../../../redux/slices/subCategorySlice';
+import { fetchAllCountries } from '../../../../redux/slices/countrySlice';
+
+
 
 const MerchantNavTabs = () => {
   const [activeCategory, setActiveCategory] = useState(null);
 
-  // Get the categories from the Redux store
-  const categories = useSelector((state) => state.category.categories);
+  const {categories,loading} = useSelector((state) => state.category);
  
-
-
-  // Get the dispatch function from the useDispatch hook
   const dispatch = useDispatch();
 
-  
-  // Fetch the categories from the API
-  useEffect(() => {
 
-  // Dispatch the fetchCategories action
-  if (!categories.length) {
-      
+  useEffect(() => {
+  if (loading) {
       dispatch(fetchCategories());
+      dispatch(fetchAllCountries());
     }
-  }, [dispatch, categories]);
+  }, [dispatch, loading]);
 
   const handleCategoryClick = async(categoryId) => {
-    setActiveCategory(categoryId);
-    console.log("categoryId....", categoryId);
+    setActiveCategory(categoryId); 
 
     try {
-      // Dispatch the fetchSubcategories action with the categoryId
-      await dispatch(fetchSubcategory(categoryId));
-      // console.log("Subcategories response ....", result);
+      await dispatch(fetchSubcategory(categoryId)); 
     } catch (error) {
-      console.error('Error fetching subcategoriessssss', error);
+      console.error('Error fetching subcategorie', error);
     }
   };
 
+ console.log("loading..",loading)
+
   return (
     <ul className="nav nav-tabs merchent-nav-box" role="tablist">
-      {categories.map((category) => (
+      {categories?.map((category) => (
         <MerchantNavItem
           key={category.id}
           category={category}

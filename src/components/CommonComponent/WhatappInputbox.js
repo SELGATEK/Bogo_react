@@ -16,6 +16,7 @@ const WhatappInputbox = () => {
       <PhoneInput
         country={'ae'}
         value={phone}
+    //    onChange={(e)=> {setPhone(e.target.value); setWhatsappNo(e.target.value)}}
         onChange={setPhone}
         inputStyle={{ width: '100%' , marginBottom: '10px'}}
         

@@ -1,12 +1,7 @@
 import React,{useState} from 'react';
 
-const InputBox = ({ label, type, id, name,  required, placeholder }) => {
+const InputBox = ({ label, type, id, name,  required, placeholder, value, getValue, maxlength, max}) => {
 
-  const [inputValue, setInputValue] = useState('');
-
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-  };
 
 
 
@@ -14,8 +9,8 @@ const InputBox = ({ label, type, id, name,  required, placeholder }) => {
   return (
     <div className="input-box">
       <label htmlFor={id}>{label}</label>
-      <input type={type} name={name} id={id} value={inputValue} placeholder={placeholder} className="form-control"
-        required={required} onChange={handleInputChange}
+      <input type={type} name={name} id={id} value={value} placeholder={placeholder} className="form-control"
+        required={required} max={max} maxlength={maxlength} onChange={e => getValue(e.target.value)}
       />
     </div>
   );

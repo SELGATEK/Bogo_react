@@ -11,8 +11,39 @@ import CampaignHeader from './elements/CampaignHeader';
 import VoucherInfo from './elements/VoucherInfo';
 // import SwitchBox from './elements/SwitchBox';
 import ValidityBox from './elements/ValidityBox';
+import { useDispatch, useSelector } from 'react-redux';
+import { reArrangeObj } from '../../../utils';
+import { CREATE_VOUCHER } from '../../../redux/slices/merchantAuthSlice';
 
 export default function ReviewCampaign() {
+    const dispatch = useDispatch()
+    const saveVoucher = useSelector((state) => state.merchantAuth.saveVoucher);
+
+const submitCampaign =(status)=>{
+    
+    const obj={
+        voucherType:'BuyOneGetOne',
+        toBuy:saveVoucher.buy,
+        toGet:saveVoucher.get,
+        estimationSaving:saveVoucher.estSaving,
+    //    excludeWeekends:saveVoucher.excludeWeekends,
+    //    excludePublicHolidays:saveVoucher.excludePublicHolidays,
+     //   branch:localStorage.getItem('businessId'),
+        finePrint:saveVoucher.finePrint,
+        maxRedeem:saveVoucher.redemption,
+        voucherTimings: reArrangeObj(saveVoucher) ,
+        isPublished:status,
+        businessIds:localStorage.getItem('businessId'),
+    }
+
+    console.log("ppppp",obj)
+    dispatch(CREATE_VOUCHER(obj))
+
+}
+
+
+
+
   return (
 
     <>
@@ -29,13 +60,13 @@ export default function ReviewCampaign() {
             <div className="review_compaign_row">
             <div className="review_campaign_box">
                 <div className="base_img">
-                    <VoucherInfo />
+                    <VoucherInfo saveVoucher={saveVoucher}/>
                     {/* <SwitchBox /> */}
-                    <ValidityBox />
+                    <ValidityBox saveVoucher={saveVoucher}/>
                     <div className='row'>
                         <div className='col-12'>
                             <div className='backToEdit'>
-                                <i class="fa-solid fa-angle-left"></i>
+                                <i className="fa-solid fa-angle-left"></i>
                                 <Link to='/merchant_campaign'>Back to Edit</Link>
                             </div>
                         </div>
@@ -49,13 +80,13 @@ export default function ReviewCampaign() {
 
                 <div className="row">
                 <div className="col-12">
-                    <Link to="/dashboard" type="submit" className="fullsubmitbtn">
+                    <a type="submit" className="fullsubmitbtn" onClick={()=>submitCampaign(true)}>
                     Publish Campaign
-                    </Link>
+                    </a>
                 </div>
                 <div className="col-12">
                     <div className="savedraftbtn_row">
-                    <span className="saveDraftbtn">Save Draft</span>
+                    <span className="saveDraftbtn"  onClick={()=>submitCampaign(false)}>Save Draft</span>
                     </div>
                 </div>
                 </div>

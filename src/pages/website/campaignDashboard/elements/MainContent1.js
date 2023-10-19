@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 
@@ -12,8 +13,8 @@ import Tab6 from './tabschild/Tab6';
 
 export default function MainContent1() {
 
+  const selectedBusinessData = useSelector((state) => state.merchantAuth.selectedBusinessData);
 
-    // tabs
   const [selectedTab, setSelectedTab] = useState(1);
 
   const buttonOption = (id) => {

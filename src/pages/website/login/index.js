@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 
 // Import Footer and Header Component
@@ -6,8 +6,16 @@ import Footer from '../../../partials/footer/Footer'
 import Headers from '../../../partials/header/Header'
 
 import LoginSection from './elements/LoginSection'
+import { useNavigate } from 'react-router-dom'
 
-export default function index() {
+ function Index() {
+ 
+  useEffect(() => { 
+    return () => {
+     if(localStorage.getItem('token') && localStorage.getItem('isLogin'))  window.location.href= '/dashboard'
+    };
+  }, []); 
+
   return (
     <div>
         <Headers />
@@ -16,3 +24,6 @@ export default function index() {
     </div>
   )
 }
+
+
+export default Index;

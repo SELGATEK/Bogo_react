@@ -204,13 +204,13 @@
 //         var reader = new FileReader();
 //         reader.onload = function (e) {
 //           var html =
-//             "<div class='upload__img-box'><div style='background-image: url(" +
+//             "<div className='upload__img-box'><div style='background-image: url(" +
 //             e.target.result +
 //             ")' data-number='" +
 //             index +
 //             "' data-file='" +
 //             f.name +
-//             "' class='img-bg'><div class='upload__img-close'></div></div></div>";
+//             "' className='img-bg'><div className='upload__img-close'></div></div></div>";
 //           imgWrap.append(html);
 //         };
 //         reader.readAsDataURL(f);

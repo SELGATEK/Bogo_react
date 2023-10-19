@@ -2,13 +2,17 @@ import React, {useCallback, useState}  from 'react';
 import { Cancel } from '@mui/icons-material';
 import { useDropzone } from 'react-dropzone';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { UpdateGalleryInfo } from '../../../../../redux/slices/businessInfoSlice';
 
 const BusinessFormGallerySection = ({onNextClick}) => {
 
   // Upload logo image
   const [logoImage, setLogoImage] = useState(null);
+  const [logo, setLogo] = useState(null);
 
   const handleLogoImageUpload = (event) => {
+    setLogo(event.target.files[0])
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -68,7 +72,13 @@ const BusinessFormGallerySection = ({onNextClick}) => {
       onDrop,
   });
 
-
+  const dispatch = useDispatch()
+const submitGallery=()=>{
+  const obj = {logo, bannerImage, selectedImages}
+  
+  dispatch(UpdateGalleryInfo(obj))
+  onNextClick();
+}
 
 
   return (
@@ -109,29 +119,7 @@ const BusinessFormGallerySection = ({onNextClick}) => {
         <div className="col-md-12 py-4 text-end">
           <div className="form_gallery_main_section upload-banner-img">
             <h3>Gallery Image</h3>
-            {/* <div id="upload-button">
-              <img
-                src="/images/gallery_img.png"
-                alt="Upload"
-                className="profile-pic img-fluid"
-              />
-              <div className="upload__box">
-                <div className="upload__img-wrap"></div>
-                <div className="upload__btn-box">
-                  <label className="upload__btn">
-                    <p>
-                      <span>Upload images</span>
-                    </p>
-                    <input
-                      type="file"
-                      multiple=""
-                      data-max_length="20"
-                      className="upload__inputfile"
-                    />
-                  </label>
-                </div>
-              </div>
-            </div> */}
+            
             {selectedImages.length > 0 ? (
                 <div style={{ border: '2px dashed #cccccc', minHeight: '60px', width: '100%' ,borderRadius:'5px'}}>
 
@@ -168,10 +156,10 @@ const BusinessFormGallerySection = ({onNextClick}) => {
       <div className="row">
         <div className="col-12 tab-content">
           <div className="next-btn-box tab-pane active" id="tabs-2">
-            <button type="button" className="btn btn-primary btnNext" onClick={onNextClick}>
+            <button type="button" className="btn btn-primary btnNext" onClick={submitGallery}>
               Next
             </button>
-            <span className="btnNext btnNextdiv" onClick={onNextClick}>Skip For Now</span>
+            <span className="btnNext btnNextdiv" onClick={submitGallery}>Skip For Now</span>
           </div>
         </div>
       </div>

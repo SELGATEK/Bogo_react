@@ -46,7 +46,7 @@ export default function MainContent2() {
 
 
             {/* sub category tabs */}
-            <div class="tabs3">
+            <div className="tabs3">
                 <ul id="tabs3-nav">
                     <li><a href="#tab7" style={{color:selectedTab === 1 ? '#1478A8': 'inherit'}} onClick={() => buttonOption(1)}>Active</a></li>
                     <li><a href="#tab8" style={{color:selectedTab === 2 ? '#1478A8': 'inherit'}} onClick={() => buttonOption(2)}>Completed</a></li>

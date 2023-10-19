@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 import DashboardHeader from './elements/DashboardHeader';
@@ -7,9 +7,33 @@ import BogoAmbassador from './elements/BogoAmbassador';
 import GrowOnlineSection from './elements/GrowOnlineSection';
 import Footer from '../../../partials/footer/Footer';
 import Header1 from './../../../partials/header/Header1';
+import { GET_ALL_BUSINESS_DETAILS, SELECTED_BUSINESS_DATA } from '../../../redux/slices/merchantAuthSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
-const DashboardPage = () => (
-  <>
+const DashboardPage = () => {
+
+  const allBusinessData = useSelector((state) => state.merchantAuth.allBusinessData);
+  
+  const dispatch = useDispatch(); 
+ 
+  useEffect(() => {
+      dispatch(GET_ALL_BUSINESS_DETAILS()); 
+      if(!localStorage.getItem('activeBusiness') && allBusinessData && allBusinessData.length){
+    console.log("dataBusiness1111",allBusinessData[0])
+
+       localStorage.setItem('activeBusiness',allBusinessData[0].id) 
+       dispatch(SELECTED_BUSINESS_DATA(allBusinessData[0]))
+        
+      } 
+  }, []);
+
+  const selectBusiness =(id)=>{
+    const dataBusiness = allBusinessData?.find(x=> x.id==id) 
+    localStorage.setItem('activeBusiness',id)
+    dispatch(SELECTED_BUSINESS_DATA(dataBusiness))
+  }
+
+  return<>
   
     {/* Header */}
     <Header1/>
@@ -20,12 +44,9 @@ const DashboardPage = () => (
         <div className="row">
           <div className="col-12">
             <div className="BranchSelector">
-              <select className="form-select" aria-label="Default select example">
+              <select className="form-select" aria-label="Default select example"  onChange={e=>selectBusiness(e.target.value)}>
                   <option selected="">Select Branch</option>
-                  <option value={1}>Marina</option>
-                  <option value={2}>Dubai</option>
-                  <option value={3}>Marina</option>
-                  <option value={4}>Dubai</option>
+                  {allBusinessData?.map(item=> <option  key={item.id} selected={localStorage.getItem('activeBusiness')==item.id} value={item.id}>{item.bName}</option>)}    
               </select>
             </div>
           </div>
@@ -33,7 +54,7 @@ const DashboardPage = () => (
             <h2>Voucher Campaign Overview</h2>
           </div>
         </div>
-        <VoucherCampaignOverview />
+        <VoucherCampaignOverview  />
         <BogoAmbassador />
         <GrowOnlineSection />
       </div>
@@ -44,6 +65,6 @@ const DashboardPage = () => (
     {/*  Footer*/}
     <Footer/>
   </>
-);
+};
 
 export default DashboardPage;

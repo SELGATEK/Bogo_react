@@ -200,9 +200,9 @@ export default function ExclusiveOffer() {
 
             <SingleSelector label="Audience Size" defautlOptions='Audience Size' options={audienceSize} />
 
-            <div class="row mt-3">
-              <div class="col-12">
-                <div class="input-box">
+            <div className="row mt-3">
+              <div className="col-12">
+                <div className="input-box">
                   <label for="" >Campaign timeline</label>
                 </div>
               </div>

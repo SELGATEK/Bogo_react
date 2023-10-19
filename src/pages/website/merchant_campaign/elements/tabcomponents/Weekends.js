@@ -7,16 +7,18 @@ export default function Weekends() {
 
 
   const handleSwitchChange = () => {
+      
       setExcludeWeekends((prevValue) => !prevValue)
 
       // disable sunday and saturday input box
-      if(excludeWeekends){
-          document.getElementById("sunday").disabled = true;
-          document.getElementById("saturday").disabled = true;
-      }else{
-          document.getElementById("sunday").disabled = false;
-          document.getElementById("saturday").disabled = false;
-      }
+      // if(!excludeWeekends){
+      //     document.getElementById("sunday");
+      //     document.getElementById("sunday").disabled = true;
+      //     document.getElementById("saturday").disabled = true;
+      // }else{
+      //     document.getElementById("sunday").disabled = false;
+      //     document.getElementById("saturday").disabled = false;
+      // }
   }
 
 
@@ -29,12 +31,7 @@ export default function Weekends() {
       <div className="offday_row">
         <label htmlFor="">Exclude weekends</label>
         <label className="switch">
-          <input
-            type="checkbox"
-            id="switchButton"
-            checked={excludeWeekends}
-            onChange={handleSwitchChange}
-          />
+          <input type="checkbox" id="switchButton" checked={excludeWeekends} onChange={handleSwitchChange} />
           <span className="slider round"></span>
         </label>
       </div>
