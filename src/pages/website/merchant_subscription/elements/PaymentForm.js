@@ -54,6 +54,7 @@ export default function PaymentForm() {
                 className="form-control card_number"
                 placeholder="4410 2919 2929 XXXX"
                 required
+                style={{border:'none'}}
               />
               <img src="/website/images/visa-icon.png" alt="" className="img-fluid" />
             </div>
@@ -88,6 +89,7 @@ export default function PaymentForm() {
                     id=""
                     className="form-control"
                     placeholder="MM/YYYY"
+                    style={{border:'none'}}
                     required
                   />
                 </div>
@@ -103,6 +105,7 @@ export default function PaymentForm() {
                     className="form-control card_number"
                     placeholder="365"
                     required
+                    style={{border:'none'}}
                   />
                 </div>
               </div>

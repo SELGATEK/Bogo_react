@@ -7,9 +7,11 @@ import 'slick-carousel/slick/slick-theme.css';
 // Import Components
 import BogoDirectoryCard from './BogoDirectoryCard';
 import SearchBox from './SearchBox';
+import { useSelector } from 'react-redux';
 
 function MainSection() {
 
+  const allBusinessData = useSelector((state) => state.merchantAuth.allBusinessData);  
 
     // carousel data
   const carouselData = [
@@ -71,15 +73,9 @@ function MainSection() {
             </Slider>
           </div>
 
-          {/* Search box */}
-          <SearchBox />
-
-          {/* <!-- Search result --> */}
-          <div className="bogo_directory_card_row">
-            <div className="row">
-              <BogoDirectoryCard />
-            </div>
-          </div>
+    
+              <BogoDirectoryCard allBusinessData={allBusinessData}/>
+ 
         </div>
       </section>
     </>

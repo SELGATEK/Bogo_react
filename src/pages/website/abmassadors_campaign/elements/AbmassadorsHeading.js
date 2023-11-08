@@ -8,11 +8,10 @@ export default function AbmassadorsHeading() {
                 
                 <div className="inner-hero-section-short">
                 <h2 >
-                    Create Your Compaign
+                    Create Your Campaign
                 </h2>
                 <span>This is how your campaign will appear to customers</span>
                 </div>
-                
             </div>
         </div>
     </>

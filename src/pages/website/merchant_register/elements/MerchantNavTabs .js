@@ -1,26 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import MerchantNavItem from './MerchantNavItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchCategories }from '../../../../redux/slices/categorySlice'  
+import { fetchSubcategory } from '../../../../redux/slices/subCategorySlice';
+import { fetchAllCountries } from '../../../../redux/slices/countrySlice';
 
-const categories = [
-  { id: 1, name: 'Dining', image: '/images/bussiness-icon/Dining.png' },
-  { id: 2, name: 'Fitness', image: '/images/bussiness-icon/Fitness.png' },
-  { id: 3, name: 'Services', image: '/images/bussiness-icon/Services.png' },
-  { id: 4, name: 'Entertainment', image: '/images/bussiness-icon/Entertainment.png' },
-  { id: 5, name: 'Spas & Salons', image: '/images/bussiness-icon/Spas.png' },
-  { id: 6, name: 'Hotels', image: '/images/bussiness-icon/Hotels.png' },
-  // Add more categories with their respective images as needed
-];
+
 
 const MerchantNavTabs = () => {
   const [activeCategory, setActiveCategory] = useState(null);
 
-  const handleCategoryClick = (categoryId) => {
-    setActiveCategory(categoryId);
+  const {categories,loading} = useSelector((state) => state.category);
+ 
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+  if (loading) {
+      dispatch(fetchCategories());
+      dispatch(fetchAllCountries());
+    }
+  }, [dispatch, loading]);
+
+  const handleCategoryClick = async(categoryId) => {
+    setActiveCategory(categoryId); 
+
+    try {
+      await dispatch(fetchSubcategory(categoryId)); 
+    } catch (error) {
+      console.error('Error fetching subcategorie', error);
+    }
   };
 
+ console.log("loading..",loading)
+
   return (
-    <ul className="nav nav-tabs merchent-nav-box" role="tablist"  >
-      {categories.map(category => (
+    <ul className="nav nav-tabs merchent-nav-box" role="tablist">
+      {categories?.map((category) => (
         <MerchantNavItem
           key={category.id}
           category={category}

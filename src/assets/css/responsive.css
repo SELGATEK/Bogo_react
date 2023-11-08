@@ -275,7 +275,11 @@
     }
   }
   
-  @media (min-width: 993px) and (max-width: 1199px) {
+  @media (min-width: 992px) and (max-width: 1199px) {
+
+    .main-hero-section {
+      padding: 0;
+  }
   
   
     /* bogo premium */
@@ -506,7 +510,29 @@
   /************(min-width: 768px) and (max-width: 992px)***********/
   /***************************************************************/
   
-  @media (min-width: 768px) and (max-width: 992px) {
+  @media (min-width: 768px) and (max-width: 991px) {
+
+    .browse_inner_section p {
+      font-size: 16px ;
+    }
+    .browse_bottom_section{
+      margin-top: 10%;
+    }
+
+    /* user registration complete  */
+    .complete-reg-text-group{
+      text-align: center;
+    }
+    .complete-reg-text-group h4{
+      font-size: 23px;
+      display: block;
+    }
+    .complete-reg-text-group span{
+      font-size: 16px;
+      line-height: 0px;
+    }
+
+
     nav ul li{
       padding-left: 0px;
     }
@@ -702,6 +728,11 @@
   
     
     /**** Merchant dashboard *** */
+
+    .BranchSelector{
+      width: 25%;
+    }
+
     .heading_overview h2{
       font-size: 26px;
       margin-top: 15px;
@@ -1059,6 +1090,9 @@
     .merchant_hedding h1 {
       font-size: 56px;
     }
+    .tab-content .next-btn-box{
+      margin-bottom: 1.5rem;
+    }
   
     /* Merchant Regitration Page Ends */
 
@@ -1151,6 +1185,8 @@
     }
     .merchant_main_section {
       height: auto;
+      margin-top: 40px;
+      margin-bottom: 0px;
     }
     .about_merchant_sectiton h5 {
       margin-top: 0;
@@ -1247,7 +1283,7 @@
     }
   
     .banner_left_section h1 {
-      font-size: 27px;
+      font-size: 26px;
       line-height: 40px;
     }
     /* Home Page Css Ends */
@@ -1324,6 +1360,24 @@
   /************************** max-width-767px*******************************/
   /***********************************************************************/
   @media (max-width: 767px) {
+
+    .galleryBoxHeading{
+      width: 100%;
+    }
+
+    #tabs-content_child .tab-content6 .row{
+      margin:0px;
+      padding:0px;
+    }
+
+
+
+    .black-div{
+      display: none;
+    }
+    .whatapp_row{
+      padding: 0;
+    }
    
     .switchBox span{
       font-size: 12px;
@@ -1687,7 +1741,7 @@
   
     .banner_left_section h1 {
       font-weight: 800;
-      font-size: 28px;
+      /* font-size: 28px; */
       line-height: 37px;
       color: #000;
     }
@@ -1718,7 +1772,7 @@
     }
   
     .browse_bottom_section {
-      margin-top: 30px;
+      margin-top: 10px;
       width: 100%;
     }
   
@@ -1748,7 +1802,7 @@
     }
   
     .merchant_inner_section {
-      padding-bottom: 30px;
+      padding-bottom: 10px;
     }
   
     .footer_bottom {
@@ -1893,7 +1947,7 @@
       height: 50px;
     }
     .bacome_right_section {
-      padding: 20px 0px;
+      padding: 20px 0px 0px;
     }
     .sing_left_section {
       text-align: center;
@@ -1927,10 +1981,38 @@
       width: 100%;
     }
   }
+
+
+  
   
   /* ===========(min-width: 481px) and (max-width: 767px)================= */
   /* ===================================================================== */
   @media (min-width: 481px) and (max-width: 767px) {
+
+    .inner-hero-section h2{
+      font-size: 30px;
+    }
+    .membership-option-section {
+      padding: 30px 0px;
+  }
+
+
+    /* user registration complete  */
+    .complete-reg-text-group{
+      text-align: center;
+    }
+    .complete-reg-text-group h4{
+      font-size: 23px;
+      display: block;
+    }
+    .complete-reg-text-group span{
+      font-size: 16px;
+      line-height: 0px;
+    }
+
+
+
+
     nav ul li{
       padding-left: 0px;
     }
@@ -2147,6 +2229,10 @@
   
   
     /**** Merchant dashboard *** */
+
+    .BranchSelector{
+      width: 50%;
+    }
     .campaign_card_row{
       height: 300px;
       margin-top: 0;
@@ -2646,7 +2732,7 @@
       width: 100%;
     }
     .banner_left_section h1 {
-      font-size: 38px;
+      font-size: 34px;
       line-height: 48px;
     }
     /* Home Page Css Start  */
@@ -2681,6 +2767,24 @@
   /************************** max-width-480px *************************/
   /*******************************************************************/
   @media (max-width: 480px) {
+
+  
+
+    /* user registration complete  */
+    .complete-reg-text-group{
+      text-align: center;
+    }
+    .complete-reg-text-group h4{
+      font-size: 18px;
+      display: block;
+    }
+    .complete-reg-text-group span{
+      font-size: 14px;
+      line-height: 0px;
+    }
+
+
+
     nav ul li{
       padding-left: 0px;
     }
@@ -2712,6 +2816,9 @@
     /* account */
     .subscription-row{
       font-size: 12px;
+    }
+    .verificationCodeInputs input{
+      width:100%;
     }
 
 
@@ -2849,14 +2956,23 @@
   
   
     /* campaing Dashboard */
+
+    .MangeOfferEditRow button{
+      width: 10rem;
+      height: auto;
+      font-size: 10px;
+    }
     #tabs2-nav li a{
       font-size: 15px;
       line-height: 0px;
     }
     .offerlabelbox, .public_nowCampaign_box{
-      width: 120px;
+      width: 80%;
       height: 40px;
       font-size: 14px;
+    }
+    .MangeOfferEditRow ul li a{
+      font-size: 10px;
     }
   
     .campaign_louch_date h6{
@@ -2937,6 +3053,10 @@
   
   
     /**** Merchant dashboard *** */
+
+    .BranchSelector{
+      width: 50%;
+    }
   
     .deshboard-header {
       background: #88C541;
@@ -3195,7 +3315,7 @@
       font-size: 20px;
     }
     .offer-row ul li h3{
-      font-size: 14px;
+      font-size: 12px;
     }
     .offer-row ul{
       padding: 0;
@@ -3386,9 +3506,7 @@
 
   
     /* Merchant Registration Css Start */
-    .form-input-box {
-      margin-top: 20px;
-    }
+    
   
     .form_privacy_policy_section {
       text-align: center;
@@ -3465,7 +3583,7 @@
       font-size: 14px;
     }
     .membership-option-section{
-      padding: 40px 0px 20px;
+      padding: 30px 0px 20px;
     }
     .marchent-fluid-section {
       padding: 30px 0px 0px;
@@ -3645,6 +3763,10 @@
     }
     .footer_main_section {
       padding-bottom: 30px;
+    }
+
+    .merchant_inner_section p {
+      padding-top: 0px;
     }
   
     .get-in-touch {
@@ -3886,6 +4008,7 @@
   
     .user_login_forget_pass a {
       font-size: 12px;
+      margin-bottom: 0.5rem;
     }
     .user_login_btn-box {
       justify-content: center;
@@ -3962,13 +4085,6 @@
   /*******************(max-width: 320px)******************************/
   /***********************************************************************/
   @media (max-width: 320px) {
-    
-  
-    
-  
-    
-  
-  
   
     .inner-hero-section h2 {
       font-size: 18px;

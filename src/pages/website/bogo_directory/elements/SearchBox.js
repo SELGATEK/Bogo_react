@@ -4,17 +4,17 @@ export default function SearchBox() {
   return (
     <>
       {/* <!-- Search box --> */}
-      <div class="row">
-            <div class="col-12">
-              <div class="searchBox_row">
-                <form action="" class="searchBox">
-                  <div class="input-group">
-                    <div class="input-group-append">
-                      <button class="btn " type="button">
-                        <img src="/images/search.png" alt="" class="img-fluid" />
+      <div className="row">
+            <div className="col-12">
+              <div className="searchBox_row">
+                <form action="" className="searchBox">
+                  <div className="input-group">
+                    <div className="input-group-append">
+                      <button className="btn " type="button">
+                        <img src="/images/search.png" alt="" className="img-fluid" />
                       </button>
                     </div>
-                    <input type="text" class="form-control search_input" placeholder="Search Venue" />
+                    <input type="text" className="form-control search_input" placeholder="Search Venue" />
 
                   </div>
                 </form>

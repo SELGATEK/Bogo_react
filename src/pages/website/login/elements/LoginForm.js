@@ -1,17 +1,43 @@
-import React, {useState} from 'react'
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react'
+import {  Link, useNavigate } from 'react-router-dom';
 
 // Import components
 import RegisterGroupBox from './RegisterGroupBox'
+import { useDispatch, useSelector } from 'react-redux';
+import {   MERCHANT_SIGNIN  } from '../../../../redux/slices/merchantAuthSlice';
+
 
 export default function LoginForm() {
 
+
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
 
+    const dispatch = useDispatch();
+    const history = useNavigate();
+  
+
+    const merchantData = useSelector((state) => state.merchantAuth);
+
+
+      
+    
+    const login=()=>{  
+        if(!email || !password) setError(true)
+        else{ 
+             const obj ={ email, password } 
+             dispatch(MERCHANT_SIGNIN(obj))
+      }
+    }
+ 
+ 
 
 
   return (
@@ -19,13 +45,15 @@ export default function LoginForm() {
         <div className="col-md-6">
             <div className="login-group-box">
                 <h4>Login</h4>
-                <form action="user_login" className="user_login_form">
+                <div className="user_login_form">
                 <div className="row">
                     <div className="col-6">
                     <input
                         type="text"
                         className="form-control user_login_email"
                         placeholder="Email address"
+                        onChange={e => setEmail(e.target.value)}
+                        value={email}
                     />
                     </div>
                     <div className="col-6">
@@ -34,10 +62,11 @@ export default function LoginForm() {
                         className="form-control user_login_pass"
                         id="exampleFormControlInput1"
                         placeholder="Password"
+                        onChange={e => setPassword(e.target.value)}
+                        value={password}
                     />
                     <i
                         toggle="#password-field"
-                        // className="fa-solid fa-eye-slash eyes-toggle-login_password"
                         className={`fa-solid ${passwordVisible ? 'fa-eye' : 'fa-eye-slash'} eyes-toggle-password eyes-toggle-login_password`}
                         onClick={togglePasswordVisibility}
                     ></i>
@@ -48,10 +77,10 @@ export default function LoginForm() {
                     </Link>
                     </div>
                     <div className="user_login_btn-box">
-                    <button className="user_login_btn btn">Login</button>
+                    <button className="user_login_btn btn" onClick={login}>Login</button>
                     </div>
                 </div>
-                </form>
+                </div>
             </div>
             <RegisterGroupBox />
         </div>

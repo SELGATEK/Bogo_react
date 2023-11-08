@@ -1,14 +1,21 @@
-import React, {useCallback, useState}  from 'react';
+import React, {useCallback, useEffect, useState}  from 'react';
 import { Cancel } from '@mui/icons-material';
 import { useDropzone } from 'react-dropzone';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { UpdateGalleryInfo } from '../../../../../redux/slices/businessInfoSlice';
 
-const BusinessFormGallerySection = ({onNextClick}) => {
+const BusinessFormGallerySection = ({onNextClick, oldlogo, oldbanner,oldgallery }) => {
 
   // Upload logo image
   const [logoImage, setLogoImage] = useState(null);
+  const [logo, setLogo] = useState(null);
 
-  const handleLogoImageUpload = (event) => {
+  const handleLogoImageUpload = (event) => { 
+    let form = new FormData(); 
+    form.append('logo', event.target.files[0]); 
+
+    setLogo(event.target.files[0])
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -24,9 +31,13 @@ const BusinessFormGallerySection = ({onNextClick}) => {
 
   // Upload Banner image
   const [bannerImage, setBannerImage] = useState(null);
+  const [bannerobj, setBannerobj] = useState();
 
   const handleBannerImageUpload = (event) => {
     const file = event.target.files[0];
+    setBannerobj(file)
+    let form = new FormData();
+    form.append('bannerImage', JSON.stringify(file)); 
     const reader = new FileReader();
 
     reader.onload = () => {
@@ -37,20 +48,19 @@ const BusinessFormGallerySection = ({onNextClick}) => {
       reader.readAsDataURL(file);
     }
   };
+             
 
-
-
-
-
+ 
 
 
 
   // Upload Gallery image
   const [selectedImages, setSelectedImages] = useState([]);
+  const [galleryimg, setGalleryimg] = useState([]);
   console.log('====', selectedImages);
 
   const onDrop = useCallback(acceptedFiles => {
-      // Update the state with the selected images
+
       setSelectedImages([...selectedImages, ...acceptedFiles]);
   }, [selectedImages]);
 
@@ -68,8 +78,24 @@ const BusinessFormGallerySection = ({onNextClick}) => {
       onDrop,
   });
 
+  const dispatch = useDispatch()
+const submitGallery=()=>{
+ const obj = {logo, bannerobj, selectedImages: selectedImages} 
+ console.log("obj gallery", obj)
+  
+  dispatch(UpdateGalleryInfo(obj))
+  onNextClick();
+}
 
 
+const handleMultipleImageUpload = (event) => {
+  const files = event.target.files;  
+  const selectedImageArray = Array.from(files);
+  setSelectedImages(selectedImageArray);
+};
+ 
+
+const obj = {logo, bannerobj, selectedImage1: selectedImages}
 
   return (
     <div>
@@ -79,7 +105,7 @@ const BusinessFormGallerySection = ({onNextClick}) => {
             <div className="logo-image-box">
               <h3>Logo</h3>
               <div className="upload_preview_box">
-                <div id="imagePreview" style={{ backgroundImage:logoImage ? `url(${logoImage})`: 'url(/images/upload_logo.png)', }}></div>
+                <div id="imagePreview" style={{ backgroundImage:logoImage ? `url(${logoImage})`: oldlogo ? `url(${oldlogo})` :'url(/images/upload_logo.png)', border: logoImage ? 'none' : '2px dashed #cccccc',}}></div>
                 <span>Upload New</span>
               </div>
             </div>
@@ -91,7 +117,7 @@ const BusinessFormGallerySection = ({onNextClick}) => {
             <div className="multi-img-box">
               <h3>Banner</h3>
               <div className="multi-img-box-group">
-                <div id="multi_img" style={{ backgroundImage:bannerImage ? `url(${bannerImage})`: 'url(/images/from_images_bannerrr.png)', }}></div>
+                <div id="multi_img" style={{ backgroundImage:bannerImage ? `url(${bannerImage})`:  oldbanner ? `url(${oldbanner})`: 'url(/images/from_images_bannerrr.png)', border: bannerImage ? 'none' : '2px dashed #cccccc', }}></div>
                 <input type="file" name="gallery" id="BannerImage" onChange={handleBannerImageUpload} />
                 <button
                   type="button"
@@ -109,34 +135,12 @@ const BusinessFormGallerySection = ({onNextClick}) => {
         <div className="col-md-12 py-4 text-end">
           <div className="form_gallery_main_section upload-banner-img">
             <h3>Gallery Image</h3>
-            {/* <div id="upload-button">
-              <img
-                src="/images/gallery_img.png"
-                alt="Upload"
-                className="profile-pic img-fluid"
-              />
-              <div className="upload__box">
-                <div className="upload__img-wrap"></div>
-                <div className="upload__btn-box">
-                  <label className="upload__btn">
-                    <p>
-                      <span>Upload images</span>
-                    </p>
-                    <input
-                      type="file"
-                      multiple=""
-                      data-max_length="20"
-                      className="upload__inputfile"
-                    />
-                  </label>
-                </div>
-              </div>
-            </div> */}
+            
             {selectedImages.length > 0 ? (
                 <div style={{ border: '2px dashed #cccccc', minHeight: '60px', width: '100%' ,borderRadius:'5px'}}>
 
                   <ul style={{ display: 'flex', justifyContent:'center', flexWrap: 'wrap',border: 'none', }}>
-                      {selectedImages.map((file, index) => (
+                      {selectedImages?.map((file, index) => (
                           <li key={index} style={{ listStyle: 'none', margin: '10px' }}>
                               <img
                                   src={URL.createObjectURL(file)}
@@ -152,14 +156,24 @@ const BusinessFormGallerySection = ({onNextClick}) => {
                 </div>
                 ):<div style={{ border: '2px dashed #cccccc', minHeight: '60px', width: '100%' ,borderRadius:'5px',alignItems:'center',justifyContent:'center',display:'flex'}}>
                 <img src="/images/gallery_img.png" alt="Upload "  className='img-fluid'/>
-
+              
                 </div>}
-                <div {...getRootProps()} style={dropzoneStyle}>
+
+                <div style={{position:"relative", width:"100%"}}>
+                  <input  accept="*" multiple type="file" name="gallery_img" id="imageUplod" onChange={handleMultipleImageUpload} style={{position:"absolute", right:'0', opacity:'0'}}/>
+                  <label className="upload__btn">
+                        <p >Upload images</p>
+                    </label>
+                </div>
+
+
+
+                {/* <div {...getRootProps()} style={dropzoneStyle}>
                     <input {...getInputProps()} />
                     <label className="upload__btn">
                         <p >Upload images</p>
                     </label>
-                </div>	
+                </div>	 */}
           </div>
         </div>
       </div>
@@ -168,10 +182,10 @@ const BusinessFormGallerySection = ({onNextClick}) => {
       <div className="row">
         <div className="col-12 tab-content">
           <div className="next-btn-box tab-pane active" id="tabs-2">
-            <button type="button" className="btn btn-primary btnNext" onClick={onNextClick}>
+            <button type="button" className="btn btn-primary btnNext" onClick={submitGallery}>
               Next
             </button>
-            <span className="btnNext btnNextdiv" onClick={onNextClick}>Skip For Now</span>
+            <span className="btnNext btnNextdiv" onClick={submitGallery}>Skip For Now</span>
           </div>
         </div>
       </div>
@@ -182,7 +196,6 @@ const BusinessFormGallerySection = ({onNextClick}) => {
 
 
 const dropzoneStyle = {
-
   borderRadius: '4px',
   cursor: 'pointer',
   width: '100%',

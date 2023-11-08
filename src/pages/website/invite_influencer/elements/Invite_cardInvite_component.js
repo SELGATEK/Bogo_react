@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-function Invite_cardInvite_component() {
-    const InviteListData = [
-        {}, {}, {}, {}, {}, {}, {}
-    ]
+function Invite_cardInvite_component({influencerList ,invitationInfluncer}) {
+ 
+ const [info,setInfo] = useState([])
+ const [closeApp, setcloseApp] = useState(false) 
+
+ console.log("info..",info)
     return (
         <>
-            {InviteListData.map((slide, id) => (
-                <div className="influencer_card">
+            {influencerList?.map((influencer, id) => (
+                <div className="col-md-6"  key={influencer.id}>
+                  <div className="influencer_card">
 
                     <div className="card">
                         <div className="row">
@@ -20,8 +23,10 @@ function Invite_cardInvite_component() {
                             <div className="col-md-8">
                                 <div className="card-body">
                                     <div className="name_row">
-                                        <p>Jane Doe</p>
-                                        <span className="invite" data-bs-toggle="modal" data-bs-target="#inviteModal"> + Invite</span>
+                                        <p>{influencer.firstName} {influencer.lastName}</p>
+                                        <span className="invite" data-bs-toggle="modal" data-bs-target="#inviteModal"
+                                        onClick={()=> setInfo(influencer)}
+                                        > + Invite</span>
                                     </div>
                                     <div className="followers">
                                         <h6>1,500</h6>
@@ -30,15 +35,17 @@ function Invite_cardInvite_component() {
 
                                     <div className="social_media_row">
                                         <ul>
-                                            <li><Link to="">Tiktok</Link></li>
-                                            <li><Link to="">Instagram </Link></li>
-                                            <li><Link to="">Facebook</Link></li>
+                                            {influencer.tiktok ? <li><a target='blank' href={influencer.tiktok}>Tiktok</a></li> :''}
+                                            {influencer.instagram ? <li><a target='blank' href={influencer.instagram}>Instagram</a></li> :''}
+                                            {influencer.facebook ? <li><a target='blank' href={influencer.facebook}>Facebook</a></li> :''} 
+                                            
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             ))}
 
@@ -58,7 +65,7 @@ function Invite_cardInvite_component() {
                             <div className="invite_influences_body">
                                 <h3>Confirm your selection</h3>
                                 <p className="mt-3">
-                                    Are you sure you want to pick Jane Doe
+                                    Are you sure you want to pick {info?.firstName} {info?.lastName}
                                     as your Brand Ambassador?
                                 </p>
 
@@ -76,7 +83,7 @@ function Invite_cardInvite_component() {
                                     <p>Close applications</p>
                                     <div className="switch-button">
                                         <label className="switch">
-                                            <input type="checkbox" id="toggleSwitch" />
+                                            <input type="checkbox" id="toggleSwitch" onChange={()=>setcloseApp(!closeApp)}/>
                                             <span className="slider round"></span>
                                         </label>
                                     </div>
@@ -88,8 +95,8 @@ function Invite_cardInvite_component() {
                         {/* <!-- Modal footer --> */}
                         <div className="modal-footer">
                             <button type="button"
-                                onclick="window.location.href='/website/pages/deshboard'"
-                                className="btn  sureBtn" data-bs-dismiss="modal">Yes, I’m sure</button>
+                                // onclick="window.location.href='/website/pages/deshboard'"
+                                className="btn  sureBtn" data-bs-dismiss="modal"  onClick={()=>{ if(!closeApp) invitationInfluncer(info.id )} }>Yes, I’m sure</button>
                         </div>
 
                     </div>

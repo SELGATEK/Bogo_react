@@ -14,9 +14,14 @@ const MerchantNavItem = ({ category, isActive, onClick }) => {
 };
 
 const MerchantNavLabel = ({ category }) => {
+
+  const imgUrl = `http://3.108.250.128:3000/${category.icon}`;
+
+
   return (
     <label className="btn businessCategoryID" data-id htmlFor={`option_${category.id}`}>
-      <img src={category.image} alt="" />
+      {/* <img src={category.icon} alt="" /> */}
+      <img src={imgUrl} alt="" />
       <span>{category.name}</span>
     </label>
   );

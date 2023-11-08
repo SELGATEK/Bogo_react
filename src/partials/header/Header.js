@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 
 function Header(props) {
-
+    const businessLogout=()=>{ localStorage.clear(); }
     return (
         <>
         <nav className="navbar navbar-expand-lg" style={{ backgroundColor: "#88c641" }}>
@@ -35,19 +35,58 @@ function Header(props) {
                 <li className="nav-item">
                     <Link className="nav-link" to="/business">BOGO for Business</Link>
                 </li>
+                { localStorage.getItem('token') ? <>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/login">Login</Link>
-                </li>
-                <li>
-                    <div className="d-flex navbuttons">
-                    <Link to="/login">
-                        <button type="button" className="btn btn-primary">
-                        Register
-                        </button>
-                    </Link>
-                    </div>
-                </li>
-                </ul>
+          <div className="btn-group">
+            <button className="btn btn-primary dropdown-toggl navbar-drop-btn" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+              Dashboard
+            </button>
+            <ul className="dropdown-menu" aria-labelledby="defaultDropdown">
+              <li>
+                <i className="fa-brands fa-windows"></i>
+                <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
+              </li>
+              <li>
+                <i className="fa-solid fa-plus" />
+                <Link className="dropdown-item" to="/merchant_campaign">Create voucher Campaign</Link>
+              </li>
+              <li>
+                <i className="fa-solid fa-plus" />
+                <Link className="dropdown-item" to="/ambassdors_compaign">Create Brand Ambassador</Link>
+              </li>
+              <li>
+              <i className="fa-solid fa-pen"></i>
+                <Link className="dropdown-item" to="/business_profile">Manage  Business Profile</Link>
+              </li>
+              <li>
+                <i className="fa-solid fa-bullhorn" />
+                <Link className="dropdown-item" to="/campaignDashboard">Campaigns</Link>
+              </li>
+              <li>
+                {/* <img src="/website/images/shop.png" alt="" className="img-fluid" /> */}
+                <i className="fa-solid fa-code-branch" />
+                <Link className="dropdown-item" to="/add_branch">Add  Branch</Link>
+              </li>
+              <li>
+                {/* <img src="/website/images/shop.png" alt="" className="img-fluid" /> */}
+                <i className="fa-solid fa-gear" />
+                <Link className="dropdown-item" to="/account">Account</Link>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div className="d-flex navbuttons">
+            <a href='/' onClick={businessLogout} className="nav-link">Logout</a>
+          </div>
+        </li> </>:
+        <>
+         <li className="nav-item"> <Link className="nav-link" to="/login">Login</Link> </li>
+                <li> <div className="d-flex navbuttons"> <Link to="/login"> <button type="button" className="btn btn-primary"> Register </button> </Link> </div> </li>
+         </>
+
+        }
+        </ul>
             </div>
             </div>
         </nav>
@@ -56,10 +95,11 @@ function Header(props) {
             {/* <!-- Nave Bar  --> */}
 
             {/* <!-- Login Popup Modal --> */}
+
             <div
                 className="modal fade"
                 id="loginModal"
-                tabindex="-1"
+                tabIndex="-1"
                 role="dialog"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
@@ -116,7 +156,7 @@ function Header(props) {
             <div
                 className="modal fade"
                 id="exampleModal"
-                tabindex="-1"
+                tabIndex="-1"
                 role="dialog"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
@@ -190,7 +230,7 @@ function Header(props) {
             <div
                 className="modal fade"
                 id="otpModal"
-                tabindex="-1"
+                tabIndex="-1"
                 role="dialog"
                 aria-labelledby="otpModalLabel"
                 aria-hidden="true"

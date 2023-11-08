@@ -9,7 +9,7 @@ const CampaignHeader = () => {
                         <div className="voucher_preview_row">
                             <div className="voucher_preview_box_btn_box">
                                 <button className="btn btn-outline-primary voucher_preview_btn">
-                                    Voucher Preview
+                                    Voucher Preview 
                                 </button>
                             </div>
                         </div>

@@ -43,7 +43,7 @@ export default function GiveBtnModal() {
       <Modal show={showModal} className='GiveBtnModalRow' onHide={handleCloseModal}  >
           <Modal.Header closeButton>
               <Modal.Title className='modal-title'>
-              Review
+              Review Your Campaign
               </Modal.Title>
           </Modal.Header>
 

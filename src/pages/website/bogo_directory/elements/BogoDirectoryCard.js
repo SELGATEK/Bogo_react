@@ -1,40 +1,76 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
+import { ImgUrl } from '../../../../utils'
 
-function Bogo_directory_card() {
-    const branchCardData = [
-        { image: "/images/directory_img/dir_card_icon1.jpg" },
-        { image: "/images/directory_img/dir_card_icon2.jpg" },
-        { image: "/images/directory_img/dir_card_icon1.jpg" },
-        { image: "/images/directory_img/dir_card_icon2.jpg" },
-        { image: "/images/directory_img/dir_card_icon1.jpg" },
-        { image: "/images/directory_img/dir_card_icon2.jpg" },
-    ]
+function Bogo_directory_card({allBusinessData}) {
+
+    const [businessData, setBusinessData] = useState(allBusinessData)
+    useEffect(()=>{
+        setBusinessData(allBusinessData)
+    },[])
+
+    const searchBusiness=(name)=>{ 
+        console.log("name",name)
+        if(name){
+            const searchData = allBusinessData.filter((x) => x.bName && x.bName.toLowerCase().includes(name.toLowerCase()) );
+          setBusinessData(searchData);
+        }
+        else{
+            setBusinessData(allBusinessData); 
+        }
+        
+    }
+ 
+const openBusiness=(id)=>{
+
+    
+}
+
     return (
-        <>
-            {branchCardData.map((slide, id) => (
+        <>  
+          <div className="row">
+            <div className="col-12">
+              <div className="searchBox_row">
+                <form action="" className="searchBox">
+                  <div className="input-group">
+                    <div className="input-group-append">
+                      <button className="btn " type="button">
+                        <img src="/images/search.png" alt="" className="img-fluid" />
+                      </button>
+                    </div>
+                    <input type="text" className="form-control search_input" placeholder="Search Venue" onChange={(e)=>searchBusiness(e.target.value)} />
+
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div> 
+          <div className="bogo_directory_card_row">
+            <div className="row">
+
+            {businessData?.map((business, i) => (
                 <div className="col-md-6 mt-2">
-                    <Link to='/voucherDetails'>
+                    <Link to='/business_profile'>
                         <span className="card p-3 card_row">
                             <div className="row">
                                 <div className="col-3">
                                     <div className="card_img">
-                                        <img src={slide.image} alt="" className="img-fluid" />
+                                    <img src={`${ImgUrl}/${business.logo}`} alt="" className="img-fluid" />
                                     </div>
                                 </div>
                                 <div className="col-6">
                                     <div className="card_details">
-                                        <h5>Tasty Treats</h5>
-                                        <span>JLT</span>
-                                        <span>Coffee, Desserts | $</span>
-                                        <span className="loacation"> <i className="fa-solid fa-location-dot text-primary"></i> <small>0.3km</small></span>
+                                            <h5>{business?.bName}</h5>
+                                            <span>{business?.subCategory?.name}</span>
+                                            <span>{business?.address}</span>
+                                            <span className="loacation"><i className="fa-solid fa-location-dot text-primary"></i>  {business?.city?.name}</span>
                                     </div>
                                 </div>
                                 <div className="col-3">
                                     <div className="card_rating_row">
                                         <div className="rating_icon">
                                             <i className="fa-solid fa-star text-primary" ></i>
-                                            <span>5.0</span>
+                                            <span>{business.rating ? business.rating : '0'}</span>
                                         </div>
                                         <div className="card_icon_row">
                                             <img src="/images/directory_img/dir_card_icon3.png" alt="" className="img-fluid" />
@@ -46,8 +82,12 @@ function Bogo_directory_card() {
                         </span>
                     </Link>
                     
-                </div>
+                </div> 
             ))}
+                </div> 
+
+                </div> 
+
 
         </>
     )

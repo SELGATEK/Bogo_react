@@ -1,45 +1,43 @@
 
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
+import {useSelector} from 'react-redux';
 
-export default function ExcludePublicHolidays() {
+ 
+  const ExcludePublicHoliday = ({ excludePublicHolidays, holidayList, setExcludePublicHolidays}) => { 
 
-    // Holiday Info Modal
-    const [showModal, setShowModal] = useState(false);
-
-    const handleCloseModal = () => {
-        setShowModal(false);
-    };
-
-    const handleOpenModal = () => {
-        setShowModal(true);
-    };
+  const publicHolidaylist = useSelector((state) => state.otherInfo.holidayList);
+  const currentDate = new Date();
+  const isoString = currentDate.toISOString();
+  const currentYear = currentDate.getFullYear(); 
+  const upcomingPublicHolidays = publicHolidaylist.filter((item) => item.date > isoString);
 
 
+  const [showModal, setShowModal] = useState(false);
 
-
-// switch button
-  const [excludeHolidays, setExcludeHolidays] = useState(false);
-
-  const handleSwitchChange = () => {
-    setExcludeHolidays((prevValue) => !prevValue);
+  const handleCloseModal = () => {
+      setShowModal(false);
   };
 
+  const handleOpenModal = () => {
+      setShowModal(true);
+  };
+
+
+
   return (
-
-
     <>
 
     <div className="row">
       <div className="offday_row">
-        <label htmlFor="">Exclude public holidays 
+        <label htmlFor="">Exclude public holidays
             <img src="/images/holidayIcon.png" alt="" className='ml-1 holidayInfo' onClick={handleOpenModal} />
         </label>
         <label className="switch">
           <input
             type="checkbox"
-            checked={excludeHolidays}
-            onChange={handleSwitchChange}
+            checked={excludePublicHolidays}
+            onChange={()=>setExcludePublicHolidays(!excludePublicHolidays)}
           />
           <span className="slider round"></span>
         </label>
@@ -51,9 +49,9 @@ export default function ExcludePublicHolidays() {
 
         <Modal.Header closeButton>
             <Modal.Title className='modal-title'>
-            UAE Holiday 2022
+            UAE Holiday {currentYear}
                  <p style={{fontSize:'18px', color:'f9f9f9'}}>
-                    Some holiday dates are subject to chyange*
+                    Some holiday dates are subject to change*
                  </p>
             </Modal.Title>
         </Modal.Header>
@@ -69,48 +67,13 @@ export default function ExcludePublicHolidays() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* Replace with your data */}
-                    <tr>
-                        <td>January 1, 2022</td>
-                        <td>Saturday</td>
-                        <td>New Year's Day</td>
-                    </tr>
-                    <tr>
-                        <td>January 1, 2022</td>
-                        <td>Saturday</td>
-                        <td>New Year's Day</td>
-                    </tr>
-                    <tr>
-                        <td>January 1, 2022</td>
-                        <td>Saturday</td>
-                        <td>New Year's Day</td>
-                    </tr>
-                    <tr>
-                        <td>January 1, 2022</td>
-                        <td>Saturday</td>
-                        <td>New Year's Day</td>
-                    </tr>
-                    <tr>
-                        <td>January 1, 2022</td>
-                        <td>Saturday</td>
-                        <td>New Year's Day</td>
-                    </tr>
-                    <tr>
-                        <td>January 1, 2022</td>
-                        <td>Saturday</td>
-                        <td>New Year's Day</td>
-                    </tr>
-                    <tr>
-                        <td>January 1, 2022</td>
-                        <td>Saturday</td>
-                        <td>New Year's Day</td>
-                    </tr>
-                    <tr>
-                        <td>January 1, 2022</td>
-                        <td>Saturday</td>
-                        <td>New Year's Day</td>
-                    </tr>
-                    {/* Add more rows for other holidays */}
+                    {upcomingPublicHolidays.map((item, index) => (
+                        <tr key={index}>
+                            <td>{item.date}</td>
+                            <td>{item.day}</td>
+                            <td>{item.name}</td>
+                        </tr>
+                    ))}
                 </tbody>
                 </table>
             </div>
@@ -129,3 +92,6 @@ export default function ExcludePublicHolidays() {
 
   );
 }
+
+
+export default ExcludePublicHoliday

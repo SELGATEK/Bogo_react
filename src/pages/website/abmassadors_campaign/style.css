@@ -12,7 +12,10 @@
 }
 .react-datepicker__input-container input{
     opacity: 0;
+    cursor: pointer;
 }
+
+
 
 .selectDate label{
     color: #029cab;

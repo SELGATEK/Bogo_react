@@ -11,51 +11,94 @@ import Recapture from '../../../../../components/CommonComponent/Recapture'
 
 const HeaderRight = () => {
 
-    // select box
-    const colourOptions = [
-        { value: 'Fashion', label: 'Fashion' },
-        { value: 'Fitness', label: 'Fitness' },
-        { value: 'Foodie', label: 'Foodie' },
-        { value: 'Lifestyle', label: 'Lifestyle' },
-        { value: 'Model', label: 'Model' },
-        { value: 'Mommy Blogger', label: 'Mommy Blogger' },
-        { value: 'Nightlife', label: 'Nightlife' },
-        { value: 'Other ', label: 'Other ' },
-      ]
+
+// handleSubmit function
+const handleSubmit = (e)=>{
+    e.preventDefault();
+}
+
+
+// State to keep track of SocialMediaInput components
+const [socialMediaInputs, setSocialMediaInputs] = useState([[{ key: Date.now() }]]);
+
+
+
+
+  
+// Function to add a new SocialMediaInput component
+const handleAddMore = () => {
+    if (socialMediaInputs.length < 4) {
+
+      const newSocialMediaInputs = [...socialMediaInputs];
+      newSocialMediaInputs.push({ key: Date.now() });
       
-      const MyComponent = () => (
-        <Select closeMenuOnSelect={false}
-        // defaultValue={[colourOptions[4], colourOptions[5]]}
-        isMulti
-        options={colourOptions}
-        styles={{
-        // Add a custom style to set the height of the input
-        control: (provided) => ({
-          ...provided,
-          minHeight: '40px !important',
-        }),
-      }}
-        />
-      )
+      setSocialMediaInputs(newSocialMediaInputs);
+    } else {
+      alert("You can't add more than 4 SocialMediaInput components.");
+    }
+};
+
+// Function to remove a SocialMediaInput component
+const handleRemove = (keyToRemove) => {
+    const newSocialMediaInputs = socialMediaInputs.filter((input) => input.key !== keyToRemove);
+    setSocialMediaInputs(newSocialMediaInputs);
+};
+
+
+// select box
+const colourOptions = [
+    { value: 'Fashion', label: 'Fashion' },
+    { value: 'Fitness', label: 'Fitness' },
+    { value: 'Foodie', label: 'Foodie' },
+    { value: 'Lifestyle', label: 'Lifestyle' },
+    { value: 'Model', label: 'Model' },
+    { value: 'Mommy Blogger', label: 'Mommy Blogger' },
+    { value: 'Nightlife', label: 'Nightlife' },
+    { value: 'Other ', label: 'Other ' },
+]
+      
+const MyComponent = () => (
+<Select closeMenuOnSelect={false}
+// defaultValue={[colourOptions[4], colourOptions[5]]}
+isMulti
+options={colourOptions}
+styles={{
+// Add a custom style to set the height of the input
+control: (provided) => ({
+    ...provided,
+    minHeight: '40px !important',
+}),
+}}
+/>
+)
 
 
 
-    // password type change
+// password type change
 
-    const [passwordVisible, setPasswordVisible] = useState(false);
+const [passwordVisible, setPasswordVisible] = useState(false);
 
-    const togglePasswordVisibility = () => {
-        setPasswordVisible(!passwordVisible);
-    };
+const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+};
 
 
-    // confirm password type change
+// confirm password type change
 
-    const [ConfirmpasswordVisible, ConfirmsetPasswordVisible] = useState(false);
+const [ConfirmpasswordVisible, ConfirmsetPasswordVisible] = useState(false);
 
-    const toggleConfirmPasswordVisibility = () => {
-        ConfirmsetPasswordVisible(!ConfirmpasswordVisible);
-    };
+const toggleConfirmPasswordVisibility = () => {
+    ConfirmsetPasswordVisible(!ConfirmpasswordVisible);
+};
+
+
+
+ // Function to handle Enter key press inside input fields
+ const handleInputKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent Enter key press from triggering the form submission
+    }
+  };
 
 
 
@@ -69,7 +112,7 @@ const HeaderRight = () => {
                 </h1>
             </div>
             <div className="interest-form-box">
-                <form id="addformBrand" className="interst-form">
+                <form id="addformBrand" className="interst-form" onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-12">
                     <div className="input-box selectpicker1">
@@ -83,16 +126,32 @@ const HeaderRight = () => {
                     <div className="col-12">
                     <div className="input-box full-name-box">
                         <label htmlFor>Full Name</label>
-                        <input type="text" name="name" id="name" className="form-control" required />
+                        <input type="text" name="name" id="name" className="form-control" required 
+                        onKeyDown={handleInputKeyDown}
+                        />
                     </div>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-12">
-                    <InputBox label="Email address" type="email" name="email" id="email" required />
+                    <InputBox label="Email address" type="email" name="email" id="email" required  onKeyDown={handleInputKeyDown}/>
                     </div>
                 </div>
-                <SocialMediaInput/>
+                {/* Render SocialMediaInput components */}
+                {socialMediaInputs.map((input, index) => (
+                    <SocialMediaInput key={input.key} 
+                    onRemove={() => handleRemove(input.key)}  
+                    showSocialMediaButton={index > 0}
+                    style={{borderTopRightRadius: index === 0 ? '0' : '5px', borderBottomRightRadius: index === 0 ? '0' : '5px' }}
+                    />
+                ))}
+                <div className="row">
+                    <div className="col-12">
+                        <div className="btn addMoreSocialMedia" onClick={handleAddMore}>
+                            Add More <i className="fa fa-plus" />
+                        </div>
+                    </div>
+                </div>
                 <div className="row">
                     <div className="col-12">
                         <MobileInput/>

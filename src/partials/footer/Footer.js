@@ -24,7 +24,7 @@ function Footer() {
                                 <h4>The App</h4>
                                 <ul>
                                     <li className="footer-app-icon">
-                                        <Link to="#">Customers</Link>
+                                        <Link to="/userRegistration">Customers</Link>
                                     </li>
                                     <li className="footer-app-icon">
                                         <Link to="/Business">Businesses</Link>
@@ -41,12 +41,12 @@ function Footer() {
                                     <li className="follow-us">
                                         <a href="/">Follow Us</a>
                                         <span>
-                                            <a href="/"
-                                            ><i className="fa-brands fa-facebook"></i></a>
-                                            <a href="/"
-                                            ><i className="fa-brands fa-square-instagram"></i></a>
-                                            <a href="/"
-                                            ><i className="fa-brands fa-linkedin"></i></a>
+                                            <Link to="https://www.facebook.com/thebogoapp"
+                                            ><i className="fa-brands fa-facebook"></i></Link>
+                                            <Link to="https://www.instagram.com/thebogoapp"
+                                            ><i className="fa-brands fa-square-instagram"></i></Link>
+                                            <Link to="https://www.linkedin.com/company/thebogoapp"
+                                            ><i className="fa-brands fa-linkedin"></i></Link>
 
                                         </span>
                                     </li>
@@ -62,16 +62,7 @@ function Footer() {
                                             /></a>
                                     </li>
                                 </ul>
-                                {/* <!-- <div className="row">
-                                    <div className="playstore-icon">
-                                        <a href="https://play.google.com/store/apps/details?id=com.bogoapp.bogoapp"
-                                        ><img src="images/Google-Play-Button_resize.png" alt=""
-                                            /></a>
-                                        <a href="https://apps.apple.com/us/app/bogo/id1541500003"
-                                        ><img src="images/App-Store-Button_resize.png" alt=""
-                                            /></a>
-                                    </div>
-                                </div> --> */}
+                                
                             </div>
                         </div>
                         <div className="col-md-4 col-lg-3">

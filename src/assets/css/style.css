@@ -2,8 +2,22 @@
 
 /* Common Css Start */
 
+
+.Business_Information_map_section .css-b62m3t-container{
+  position: absolute;
+  top: 50px;
+  width: 30%;
+  left: 30%;
+}
+.Business_Information_map_section .css-b62m3t-container .css-13cymwt-control{
+    border-radius: 30px;
+}
+
 body {
   font-family: "Montserrat", sans-serif !important;
+}
+a:hover{
+  text-decoration: none;
 }
 input::placeholder {
   font-family: "Montserrat !important";
@@ -401,8 +415,6 @@ button.btn.btn-primary.me-3.text-white a {
   font-weight: 400;
   font-size: 18px;
   line-height: 150%;
-  /* or 27px */
-
   text-align: center;
 
   color: #777777;
@@ -1002,6 +1014,7 @@ button.popup_button_two_section.popup_button_one:hover {
   padding-top: 0;
 }
 
+
 .bogo_inner_section {
   margin-bottom: 40px;
   width: 320px;
@@ -1187,6 +1200,14 @@ button.popup_button_two_section.popup_button_one:hover {
   width: 100%;
   margin: auto;
 }
+.whatapp_row .react-tel-input input{
+  background: #f7f7f7ff;
+}
+.whatapp_row .react-tel-input .country-list{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
 /* Merchange Registration Page Css Start  */
 
@@ -1237,7 +1258,7 @@ button.popup_button_two_section.popup_button_one:hover {
   text-align: center;
 }
 .next-btn-box .btnNext, .payment-btn-box .btnNext {
-  padding: 10px 120px;
+  padding: 10px 0px;
   background: #029cab !important;
   border-radius: 5px;
   font-family: "Montserrat";
@@ -1247,9 +1268,9 @@ button.popup_button_two_section.popup_button_one:hover {
   line-height: 29px;
   letter-spacing: 0.004em;
   color: #ffffff;
-  /* 
-  width: 300px; */
+  min-width: 300px;
 }
+
 .payment-form-box .pay-btn-row .payment-btn-box .btnNext{
   padding: 10px 120px;
   background: #029cab !important;
@@ -1913,7 +1934,7 @@ img.choose_two_images {
 
 #imagePreview {
   background-image: url("../../../public/images/upload_logo.png");
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   width: 297px;
@@ -1956,6 +1977,13 @@ img.choose_two_images {
   justify-content: flex-start;
   margin-left: auto;
 }
+.logo-image-box h3{
+  font-size: 26px;
+}
+.multi-img-box h3{
+  font-size: 26px;
+}
+
 .multi-img-box-group{
   position: relative;
 }
@@ -2031,6 +2059,9 @@ img.choose_two_images {
 
 .upload-banner-img {
   position: relative;
+}
+.upload-banner-img h3{
+  font-size: 26px;
 }
 .upload-banner-img + span {
   font-family: "Montserrat";
@@ -2170,7 +2201,7 @@ img.choose_two_images {
   background: #3b5998;
   color: #fff !important;
   border: none;
-  padding: 10px 12px;
+  padding: 10px 11px;
   border-radius: 5px;
   text-decoration: none !important;
 }
@@ -3249,7 +3280,7 @@ nav.navbar {
   background: #e9ecef;
   font-size: 12px;
   padding: 5px 10px;
-  text-align: center; 
+  text-align: left; 
   border-radius: 10px;
 }
 
@@ -3272,6 +3303,21 @@ nav.navbar {
   align-items: center;
 }
 
+.social_media_previow_box{
+  width: 30%;
+  height: 50px;
+  border: 1px solid #e9ecef;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow-wrap: anywhere;
+  overflow-x: auto;
+  flex-direction: column;
+}
+
+
 
 .hastag-row label, .promo_code_preview_row label, .social_media_preview_row label{
   font-family: Montserrat;
@@ -3279,7 +3325,10 @@ nav.navbar {
   font-weight: 600;
   line-height: 13px;
   letter-spacing: 0em;
+  margin: 0;
 }
+
+
 
 .hastag-row span, .promo_code_preview_row span, .social_media_preview_row span{
   font-family: Montserrat;
@@ -3523,7 +3572,7 @@ nav.navbar {
   border: none;
   background: #0000002b;
   padding: 10px 20px;
-  box-shadow: rgba(0, 0, 0, 0.24) 2px 1px 0px;
+  box-shadow: rgba(0, 0, 0, 0.43) 2px 1px 0px;
 }
 .navbar-collapse ul li .btn-group ul li {
   list-style: none;
@@ -3856,6 +3905,9 @@ video {
 .rating-row{
   margin-top: 15px;
 }
+.rating-row i.fa.fa-star{
+  color: gold;
+}
 .rating-row p {
     font-family: "Montserrat";
     font-style: normal;
@@ -4129,15 +4181,14 @@ video {
 .resend_code_box a {
   font-family: "Montserrat";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 13px;
   line-height: 150%;
-  /* or 20px */
-
   text-align: center;
-
-  color: #8e8e8e;
+  color: #1478a8;
+  cursor: pointer;
 }
+
 .resend_code_box a {
   text-decoration: none;
   color: #1478a8;
@@ -4748,6 +4799,7 @@ color: #969696;
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
+  padding-right: 0;
 }
 .switchBox{
   display: flex;
@@ -4815,7 +4867,7 @@ color: #969696;
 .fine_print_box textarea{
   background: #F7F7F7;
   border-radius: 5px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .review_submit_btn_row{
@@ -4877,6 +4929,7 @@ color: #969696;
   background-size: cover;
   background-position: inherit;
   width: auto;
+  max-width: 450px;
   height: 240px;
 
   display: flex;
@@ -4914,11 +4967,9 @@ color: #969696;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 100%;
-  /* or 28px */
-
-
+  overflow-wrap:anywhere;
   color: #000000;
 }
 .voucher_preview_row .buy-box h3, .voucher_preview_row .get-box h3{
@@ -4928,6 +4979,7 @@ color: #969696;
   font-size: 18px;
   line-height: 100%;
   color: #029CAB;
+  overflow-wrap:anywhere;
 }
 /* ============================ Campaign Css Ends ============================= */
 
@@ -4977,7 +5029,7 @@ color: #FFFEFE;
   
 }
 .review_campaign_box{
-  width: 64%;
+  width: 60%;
 }
 .termsCondition h4{
   font-family: 'Montserrat';
@@ -5011,7 +5063,7 @@ color: #FFFEFE;
 }
 
 .base_img{
-  height: 600px;
+  height: 540px;
   width: auto;
   background-image: url('../../../public/images/Base1.png');
   background-position: center;
@@ -5023,6 +5075,9 @@ color: #FFFEFE;
   justify-content: space-around;
   border-bottom: 1px solid #dadada;
 
+}
+textarea[placeholder='#hashtag']{
+  background-color: #f7f7f7;
 }
 
 
@@ -5049,6 +5104,7 @@ color: #FFFEFE;
   border-radius: 3px;
   cursor: pointer;
   width: 100%;
+  display: block;
   margin-top: 20px;
   text-decoration: none !important;
 }
@@ -5062,9 +5118,13 @@ color: #FFFEFE;
   display: flex;
   justify-content:space-around;
   align-items: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 0px;
+  padding-bottom: 46px;
   border-bottom: 2px dotted rgba(0, 0, 0, 0.27);
+}
+.offer_voucher_box img{
+  width: 100%;
+  height: 100px;
 }
 
 .offer_voucher_box  span{
@@ -5118,6 +5178,15 @@ border: 2px dotted #1478A8;
   font-size: 18px;
   line-height: 37px;
   color: #000000;
+}
+.maxRedemption_group span{
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0px;
+  color: #F1C62E;
+  margin-right: 5px;
 }
 .merchant_box-code{
   text-align: center;
@@ -5493,6 +5562,9 @@ padding-bottom: 30px;
 }
 
 
+
+
+
 /* horizontal card */
 .card_row{
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -5673,9 +5745,8 @@ padding-bottom: 30px;
 }
 
 .location_heading{
-  font-family: Montserrat;
   font-size: 32px;
-  font-weight: 600;
+  font-weight: 600 !important;
   line-height: 22px;
   letter-spacing: 0px;
   color: #434040;
@@ -5684,7 +5755,7 @@ padding-bottom: 30px;
 }
 
 .location_map{
-  background-image: url('../../../public/images/map.png');
+  /* background-image: url('../../../public/images/map.png'); */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -5748,7 +5819,7 @@ padding-bottom: 30px;
   line-height: 49px;
   letter-spacing: 0.02em;
   color:#130F26;
-  margin-top: 40px;
+  margin-top: 10px;
   margin-bottom: 40px;
 
 }
@@ -6141,6 +6212,16 @@ padding-bottom: 30px;
   display: flex;
   align-items: center;
 }
+.overflowScrollBox span{
+  height: 30px;
+  width: 30%;
+  overflow-wrap: anywhere;
+  overflow-x: auto;
+  border: 1px solid #ededed;
+}
+.overflowScrollBox span::-webkit-scrollbar {
+  display:none;
+}
 .hastag-row .input-box{
   height: 100%;
   display: flex;
@@ -6292,6 +6373,7 @@ ul#tabs2-nav li.active {
 .edtiteable-row{
   display: flex;
   justify-content: flex-end;
+  height:100%;
 }
 .tab-content1, .tab-content6 {
   padding: 10px;
@@ -6317,7 +6399,9 @@ ul#tabs2-nav li.active {
   margin-top: 20px;
   padding: 10px 0px;
 }
-
+.galleryBoxHeading{
+  width: 70%;
+}
 
 
 .offerlabelbox, .public_nowCampaign_box{
@@ -6334,8 +6418,11 @@ ul#tabs2-nav li.active {
   font-family: Montserrat;
   font-size: 14px;
   font-weight: 400;
-  line-height: 32px;
+  
   letter-spacing: 0em;
+  box-sizing: border-box;
+    padding: 7px 5px;
+    text-align: center;
 }
 
 
@@ -6550,9 +6637,63 @@ ul#tabs2-nav li.active {
 .editeable_box{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
+  /* align-items: center; */
   height: 100%;
+}
+
+.MangeOfferEditRow{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 8px;
+}
+.MangeOfferEditRow button{
+  background: #1478A8;
+    width: 200px;
+    height: 50px;
+    color: #ffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: 0em;
+}
+
+.MangeOfferEditRow button:hover{
+  color: white;
+}
+.MangeOfferEditRow ul{
+  border: none;
+  background: #d8d8d8;
+  padding: 10px 0px;
+}
+
+.BranchSelector{
+  margin-top: 1rem;
+  width: 20%;
+}
+.addMoreSocialMedia{
+  background: #f7f7f7;
+  width: 100%;
+  padding: 10px;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 5px;
+
+}
+.MangeOfferEditRow ul li a{
+  color:#000;
+  line-height: 25px;
+  font-size: 14px;
+}
+.MangeOfferEditRow ul li a:hover{
+  color:#1478A8;
+  
 }
 
 .voucher_redim_row span{
@@ -6657,6 +6798,20 @@ ul#tabs2-nav li.active {
   top:-84px;
 }
 
+.editBtnBox{
+  position: absolute;
+  top: 30%;
+  right: 0;
+  background: #007bff;
+  padding: 7px 20px;
+  border-radius: 7px;
+}
+.editBtnBox span{
+  font-size: 16px;
+  color: white;
+  font-weight: 500;
+}
+
 .branch_log{
   border-radius: 100px;
   width: 100px;
@@ -6694,18 +6849,22 @@ ul#tabs2-nav li.active {
 
 .branch_name_review_row span{
   font-family: Montserrat;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 29px;
   letter-spacing: 0.004em;
   color: #fff;
 
 }
-
-.branch_review i{
-  color: #FFDB59;
+.branch_review i{ 
   font-size: 12px;
 }
+
+.branch_review i.active{
+  color: #FFDB59; 
+}
+
+ 
 
 .backTodirectory_box a{
   text-decoration: none;
@@ -6746,7 +6905,10 @@ ul#tabs2-nav li.active {
 .branch-gallery_img_box ul{
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: center;
+}
+.branch-gallery_img_box ul li:first-child{
+  margin-left: 0;
 }
 
 .branch-gallery_img_box ul li{
@@ -7145,6 +7307,15 @@ ul#tabs2-nav li.active {
 
 
 /* *************************** redeemtion history css start ********************* */
+.redeem_voucher_body .red_section_box{
+  box-sizing: border-box;
+  padding-top: 20px;
+}
+
+.red_section_box::-webkit-scrollbar { 
+  width: 2px !important;
+  display: none; 
+}
 .redeem_voucher_body{
   padding: 30px 0px;
 }
@@ -7281,7 +7452,7 @@ ul#tabs2-nav li.active {
 }
 
 .change_pass_input_row .input-box input{
-  border: 1px solid #00e7ff;
+  border: 1px solid #e8eaec;
 }
 
 

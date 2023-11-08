@@ -5,7 +5,44 @@
   text-align: center;
 }
 .verificationCodeInputs input{
-    width: 5%;
+    width: 10%;
     margin-right: 5px;
     text-align: center;
+}
+.verificationCodeInputs input:focus{
+    outline: none;
+}
+.setBtnPin{
+  outline: 1px solid #029cab ;
+  background-color: #029cab;
+  padding: 0.3rem 1rem;
+  color: white;
+}
+.setBtnPin:hover{
+  background-color: #17cbdb;
+  color: white;
+}
+.merchantPin_sett_row{
+  display: flex;
+  justify-content: space-between;
+  align-items:flex-start;
+}
+
+
+
+
+
+/* responsive css */
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .verificationCodeInputs input{
+    width: 10%;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .verificationCodeInputs input{
+    width: 100%;
+  }
 }

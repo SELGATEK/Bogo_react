@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 
@@ -12,8 +13,8 @@ import Tab6 from './tabschild/Tab6';
 
 export default function MainContent1() {
 
+  const selectedBusinessData = useSelector((state) => state.merchantAuth.selectedBusinessData);
 
-    // tabs
   const [selectedTab, setSelectedTab] = useState(1);
 
   const buttonOption = (id) => {
@@ -26,13 +27,13 @@ export default function MainContent1() {
         <div className="row">
           <div className="col-md-6">
             <div className="campaign_base">
-              <h1>6</h1>
+              <h1>{selectedBusinessData?.vouchers? selectedBusinessData?.vouchers.length : 0}</h1>
               <h3>Total Campaigns</h3>
             </div>
           </div>
           <div className="col-md-6">
             <div className="redeem_voucher_base">
-              <h1>45</h1>
+              <h1>0</h1>
               <h3>Vouchers Redeemed</h3>
             </div>
           </div>
@@ -61,9 +62,9 @@ export default function MainContent1() {
 
         {/* tab content child */}
         <div id="tabs-content_child">
-          {selectedTab === 1 && <Tab4 />}
-          {selectedTab === 2 && <Tab5 />}
-          {selectedTab === 3 && <Tab6 />}
+          {selectedTab === 1 && <Tab4 vouchers={selectedBusinessData?.vouchers} />}
+          {selectedTab === 2 && <Tab5  vouchers={selectedBusinessData?.vouchers} />}
+          {selectedTab === 3 && <Tab6  vouchers={selectedBusinessData?.vouchers} />}
         </div>
       </div>
     </div>

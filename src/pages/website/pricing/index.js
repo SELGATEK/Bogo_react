@@ -60,7 +60,7 @@ const PricingPage = () => {
                           1 voucher per week, 1 voucher per merchant
                         </li>
                       </ul>
-                      <Link to="/merchant_subscription" className="second-link">
+                      <Link to="/userRegistration" className="second-link">
                         Choose this plan
                       </Link>
                     </div>
@@ -81,7 +81,7 @@ const PricingPage = () => {
                           the platform
                         </li>
                       </ul>
-                      <Link to="/merchant_subscription" className="second-link">
+                      <Link to="/userRegistration" className="second-link">
                         Choose this plan
                       </Link>
                     </div>
@@ -102,7 +102,7 @@ const PricingPage = () => {
                           contained on the platform and they never expire
                         </li>
                       </ul>
-                      <Link to="/merchant_subscription">Choose this plan</Link>
+                      <Link to="/userRegistration">Choose this plan</Link>
                     </div>
                   </div>
                 </div>

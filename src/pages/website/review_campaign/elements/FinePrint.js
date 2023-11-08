@@ -5,7 +5,7 @@ export default function FinePrint() {
     <div className="fine_print">
       {/* ... fine print components ... */}
         <h4>FINE PRINT</h4>
-        <div class="fine_print_outbox">
+        <div className="fine_print_outbox">
             <span>
             This Buy 1 Get 1 Voucher excludes all Family-sized Platters.
             </span>

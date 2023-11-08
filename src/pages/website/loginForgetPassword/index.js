@@ -19,11 +19,13 @@ export default function index() {
 
 
     <div className="user_login_box">
-      <div className="row">
-            <UserImage />
-        <div className="col-md-6">
-            <ForgetPasswordRow />
-        </div>
+      <div className="container">
+          <div className="row">
+                <UserImage />
+            <div className="col-md-6">
+                <ForgetPasswordRow />
+            </div>
+          </div>
       </div>
     </div>
 

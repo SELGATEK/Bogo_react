@@ -47,7 +47,7 @@ const HomePage = () => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 767,
         settings: {
           slidesToShow: 3,
         },
@@ -141,7 +141,7 @@ const HomePage = () => {
         <div className="container">
           <div className="row">
            {browseData.map( (item, index) =>  (
-              <div className="col-md-6 col-lg-4" key={index}>
+              <div className="col-sm-6 col-md-4 col-lg-4" key={index}>
                 <BrowseItem 
                   imageSrc={item.imageSrc}
                   title={item.title}

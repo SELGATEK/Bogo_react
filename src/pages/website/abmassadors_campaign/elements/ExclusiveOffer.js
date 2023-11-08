@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select'
+import { format } from 'date-fns';
 
 
 
@@ -39,9 +40,9 @@ export default function ExclusiveOffer() {
 
   // select box
   const colourOptions = [
-    { value: 'demo1', label: 'demo1' },
-    { value: 'demo2', label: 'demo2' },
-    { value: 'demo3', label: 'demo3' }
+    { value: 'Marina', label: 'Marina' },
+    { value: 'Dhubai', label: 'Dhubai' },
+    { value: 'Marina1', label: 'Marina1' }
   ]
   
   const MyComponent = () => (
@@ -54,33 +55,58 @@ export default function ExclusiveOffer() {
     control: (provided) => ({
       ...provided,
       minHeight: '40px !important',
+      backgroundColor: '#f7f7f7',
+      border: 'none',
     }),
   }}
     />
   )
 
+
+
+  // select box
+  const socialMediaOptions = [
+    { value: 'Facebook', label: 'Facebook' },
+    { value: 'Instagram', label: 'Instagram' },
+    { value: 'Youtube', label: 'Youtube' },
+    { value: 'TickTok', label: 'TickTok' },
+  ]
+  
+  const SocialComponent = () => (
+    <Select closeMenuOnSelect={false}
+    defaultValue={[socialMediaOptions[4], socialMediaOptions[5]]}
+    isMulti
+    options={socialMediaOptions}
+    styles={{
+    // Add a custom style to set the height of the input
+    control: (provided) => ({
+      ...provided,
+      minHeight: '40px !important',
+      backgroundColor: '#f7f7f7',
+      border: 'none',
+    }),
+  }}
+    />
+  )
+
+
   
 
 
 
-
-
-    // social media options
-    const socialMediaOptions = [
-        { value: '1', label: 'One' },
-        { value: '2', label: 'Two' },
-        { value: '3', label: 'Three' },
-        // Add more options as needed
-    ];
-
-
     // Audience Size options
     const audienceSize = [
-        { value: '1', label: 'One' },
-        { value: '2', label: 'Two' },
-        { value: '3', label: 'Three' },
-        // Add more options as needed
-    ];
+      { value: '1', label: '2000+' },
+      { value: '2', label: '5000+' },
+      { value: '3', label: '10000+' },
+      { value: '3', label: '25000+' },
+      { value: '3', label: '50000+' },
+      { value: '3', label: '100000+' },
+      { value: '3', label: '250000+' },
+      { value: '3', label: '500000+' },
+      { value: '3', label: '1m+' },
+      // Add more options as needed
+  ];
 
 
 
@@ -102,7 +128,7 @@ export default function ExclusiveOffer() {
                 <div className="input-box jst_cont_btw">
                   <label for="">Allow Guest  (+1)
                   </label>
-                  <label className="switch">
+                  <label className="switch" style={{width:'44px'}}>
                     <input type="checkbox" id="switchButton"/>
                     <span className="slider round"></span>
                   </label>
@@ -110,9 +136,15 @@ export default function ExclusiveOffer() {
               </div>
             </div>
 
-
             {/* multi selector  */}
-            <MyComponent />
+            <div className="row ">
+               <div className="col-12">
+                  <div className="input-box">
+                      <label htmlFor=" " className="label_text">Select Branch</label>
+                      <MyComponent  />
+                  </div>
+               </div>
+            </div>
 
 
             <TextAreaLabel label='Campaign Requirement' rows="5" placeholder="Tell the influencer what you’re looking for"  />
@@ -138,7 +170,7 @@ export default function ExclusiveOffer() {
                   <li>
                     <div className="input-box ">
                       <label htmlFor="" className="text-center">Video</label>
-                      <label className="switch mr-0">
+                      <label className="switch mr-0" style={{width:'37px'}}>
                         <input type="checkbox" id="switchButton"/>
                         <span className="slider round"></span>
                       </label>
@@ -153,13 +185,24 @@ export default function ExclusiveOffer() {
             <PromoCodeRow label='Add Promo Code' />
 
 
-            <SingleSelector label="Preffered Social Media Platform" defautlOptions='Select platforms that apply' options={socialMediaOptions} />
+            {/* multi selector  */}
+            <div className="row ">
+               <div className="col-12">
+                  <div className="input-box">
+                      <label htmlFor=" " className="label_text">Preffered Social Media Platform</label>
+                      <SocialComponent  />
+                  </div>
+               </div>
+            </div>
 
-            <SingleSelector label="Audience Size" defautlOptions='One' options={audienceSize} />
 
-            <div class="row mt-3">
-              <div class="col-12">
-                <div class="input-box">
+
+
+            <SingleSelector label="Audience Size" defautlOptions='Audience Size' options={audienceSize} />
+
+            <div className="row mt-3">
+              <div className="col-12">
+                <div className="input-box">
                   <label for="" >Campaign timeline</label>
                 </div>
               </div>
@@ -170,12 +213,10 @@ export default function ExclusiveOffer() {
                 <div className="input-box jst_cont_btw">
                   <label for="" >Accept applications until</label>
                   <div className="select_datebox">
-                   
-                    {startDate ? (
-                      <label for=""  className="selectDate" >{startDate.toDateString()}</label>
-                      ) : (
-                        <div>
-                          <label onClick={() => document.getElementById('datepicker-trigger').click()}>Select date</label>
+                  <div>
+                          <label onClick={() => document.getElementById('datepicker-trigger').click()} style={{color:'#029cab', cursor: 'pointer'}}>
+                          {startDate ? format(startDate, 'dd/MM/yyyy') : 'Select Date'}
+                          </label>
                           <DatePicker
                             id="datepicker-trigger"
                             selected={startDate}
@@ -183,9 +224,10 @@ export default function ExclusiveOffer() {
                             onChange={handleDateChange}
                             popperPlacement="bottom-end"
                             onFocus={() => document.getElementById('datepicker-trigger').click()}
+                            
                           />
                         </div>
-                      )}
+
                   </div>
 
                 </div>
@@ -198,22 +240,19 @@ export default function ExclusiveOffer() {
                   <label htmlFor="" >Campaign completion date</label>
                   <div className="select_datebox">
                     
-                    {dateStart ? (
-                      <label htmlFor="" className="selectDate">{dateStart.toDateString()}</label>
-                    ):(
-                      <div>
-                        <label onClick={() => document.getElementById('datepicker-trigger').click()}>Select date</label>
+                  <div>
+                        <label onClick={() => document.getElementById('datepickerTriggers').click()} style={{color:'#029cab'}}>
+                                {dateStart ? format(dateStart, 'dd/MM/yyyy') : 'Select Date'}
+                        </label>
                         <DatePicker
-                              id="datepicker-trigger"
-                              selected={dateStart}
-                              minDate={new Date()}
-                              onChange={handleDateOpen}
-                              popperPlacement="bottom-end"
-                              onFocus={() => document.getElementById('datepicker-trigger').click()}
+                            id="datepickerTriggers"
+                            selected={dateStart}
+                            minDate={new Date()}
+                            onChange={handleDateOpen}
+                            popperPlacement="bottom-end"
+                            onFocus={() => document.getElementById('datepickerTriggers').click()}
                         />
                       </div>
-                      
-                    )}
                     
                   </div>
 

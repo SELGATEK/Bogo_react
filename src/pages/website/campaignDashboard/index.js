@@ -15,6 +15,8 @@ import CampaignHeader from './elements/CampaignHeader';
 
 
 export default function Index() {
+
+  
   const [selectedTab, setSelectedTab] = useState(1);
 
   const buttonOption = (id) => {
@@ -33,18 +35,12 @@ export default function Index() {
           <div className="influencers_section">
             <div className="tabs-row">
               <ul id="tabs-nav">
-                <li
-                  className={`offer-box influencer_tab ${selectedTab === 1 ? 'active' : ''}`}
-                  onClick={() => buttonOption(1)}
-                >
+                <li className={`offer-box influencer_tab ${selectedTab === 1 ? 'active' : ''}`} onClick={() => buttonOption(1)} >
                   <Link to="">
                     <h3>Voucher</h3>
                   </Link>
                 </li>
-                <li
-                  className={`offer-box influencer_tab ${selectedTab === 2 ? 'active' : ''}`}
-                  onClick={() => buttonOption(2)}
-                >
+                <li className={`offer-box influencer_tab ${selectedTab === 2 ? 'active' : ''}`} onClick={() => buttonOption(2)} >
                   <Link to="">
                     <h3>Brand Ambassador</h3>
                   </Link>
